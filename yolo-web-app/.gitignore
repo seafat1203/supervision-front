@@ -1,0 +1,27 @@
+# 忽略 Python 虚拟环境
+venv/
+.env/
+
+# Python 编译文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode 配置（如果你用 VSCode）
+.vscode/
+
+# Jupyter Notebook checkpoint
+.ipynb_checkpoints/
+
+# 临时文件
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# macOS 文件
+*.DS_Store
+
+# 上传后的检测图像缓存（可选）
+static/tmp/
