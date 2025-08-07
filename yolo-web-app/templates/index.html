@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI 识图小工具</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 AI 识图小工具</h1>
+    <p>上传一张图片，自动识别图片中的物体！</p>
+
+    <form id="uploadForm" action="/detect" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" id="imageInput" accept="image/*" required />
+      <p class="tip">最大支持 8MB，最大分辨率 3000x3000</p>
+      <button type="submit">识别图片</button>
+    </form>
+
+    <div id="errorMsg" class="error"></div>
+
+    {% if result_img %}
+    <h2>识别结果：</h2>
+    <img src="{{ result_img }}" alt="识别结果图" />
+    {% endif %}
+  </div>
+
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const form = document.getElementById("uploadForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    form.addEventListener("submit", function (e) {
+      const file = imageInput.files[0];
+      if (file && file.size > 8 * 1024 * 1024) {
+        e.preventDefault();
+        errorMsg.innerText = "❌ 文件太大，最大只能 8MB！";
+      }
+    });
+  </script>
+</body>
+</html>
